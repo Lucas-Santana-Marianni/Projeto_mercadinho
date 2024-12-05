@@ -1,0 +1,122 @@
+import os
+print(' _____________________________________')
+print('|          SUPERMERCADO KOMPRÃO       |')
+print('|            FAÇA SEU PEDIDO!         |')
+print(' -------------------------------------')
+
+produto=[] #lista
+total_compras=0 
+valor_total_produtos=0
+valor_pagar=0
+escolha=0
+
+while escolha !="0":  #menu da tela
+    print('\n DIGITE A OPÇÃO')
+    print("0- Sair")
+    print("1- Fazer pedido")
+    print("2- Listar pedido")
+    print("3- Pagamento do pedido")
+    print("4- Finalizar pedido")
+    
+    escolha=input("Escolha uma opção: ")
+    if escolha=='0':
+        print('\nTem certeza de que você deseja sair?''\n''Digite 0 se for sim ou 5 se for não')
+        escolha=input('Resposta:')
+        
+    if escolha=='1':  ##solicitar pedido e valores e armazenar no carrinho em dicionario
+        os.system('cls')
+        while True:
+         i=0
+
+         try: # trata os erro digitados para dados numéricos
+          codigo_produto=int(input('Código do produto: '))
+          produto.append(codigo_produto) #recebe os dados na lista
+          nome_produto=str(input('Nome do produto: '))
+          produto.append(nome_produto)
+          quantidade_produto=int(input('Quantidade do produto: '))
+          produto.append(quantidade_produto)
+          preco_produto=float(input('Preço do produto: R$'))
+          produto.append(preco_produto)
+          preco_total_produto=quantidade_produto*preco_produto
+          
+          print('Valor a pagar do produto: R$', preco_total_produto)
+          print('')
+          print(' ************')
+          valor_pagar+=preco_total_produto
+          print('Total da compra: ',valor_pagar)
+         except:
+             print('Digite certo')
+             continue
+         resp=''
+         resp=str(input('Deseja comprar mais produtos? S/N: ')).strip().upper()[0]
+         
+         if resp=='N' or resp=='n':
+          print('')
+          print('  **********')
+         
+          total_compras+=valor_pagar
+          print('VALOR TOTAL DOS PEDIDOS: ','R$',total_compras)
+          break
+         
+         
+    if escolha=='2':
+             os.system('cls')
+             ## ler os dados dos produtos da lista e impressão
+             print('\n',produto,'|\n')
+             for valor in produto:
+                 print(valor)
+                 # break
+                 #else
+                 #print(valor)
+                 
+    if escolha=='3':
+     os.system('cls')
+                     #pagamento
+     print('***********************')   
+                        
+     total_pagamento=total_compras
+     opcao=0
+     while opcao !="0":
+        os.system('cls')
+        print("FORMA DE PAGAMENTO: ")
+        print('')
+        print('Pagamento em dinheiro e debito tem 5% de desconto')
+        print('')
+        print('  DIGITE A OPÇÃO')
+        print('1 - DINHEIRO')
+        print('2 - DÉBITO')
+        print('3 - CRÉDITO')
+        opcao =input('Escolha uma opção: ')
+        if opcao =='1':
+         os.system('cls')                       
+         print('\nPAGAMENTO EM DINHEIRO')
+         dinheiro = total_pagamento - (total_compras*5/100)
+         print('VALOR TOTAL:  ',total_pagamento)
+         print('DESCONTO 5%:  ',total_compras*5/100)
+         print('VALOR A PAGAR:  ',dinheiro)
+         break
+                                
+        if opcao=='2':
+         os.system('cls')                          
+         print('\nPAGAMENTO COM CARTÃO DÉBITO EM CONTA')
+         debito = total_pagamento - (total_compras*5/100)
+         print('VALOR TOTAL:  ',total_pagamento)
+         print('DESCONTO 5%  ', total_compras*5/100)
+         print('VALOR À PAGAR: ',debito)
+         break
+                                    
+        if opcao=='3':
+         os.system('cls')                               
+         credito = total_pagamento
+         print('\nPAGAMENTO COM CREDITO')
+         print('VALOR À PAGAR: ',credito)
+                                        
+        break
+                                    
+    if escolha=='4':
+     os.system('cls')
+     print('\nAgradecemos pela preferência!\n\n')
+     break
+                            
+                             
+                                                            
